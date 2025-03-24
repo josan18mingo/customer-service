@@ -1,0 +1,68 @@
+openapi: 3.0.3
+info:
+  title: customers API
+  version: 1.0.0
+  description: API para gestión de customers
+
+servers:
+  - url: http://localhost:8081/api
+
+paths:
+  /customer/{id}:
+    get:
+      operationId: getCustomerById
+      tags: [ Customers ]
+      summary: Get customer by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Customer found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CustomerDTO"
+        '404':
+          description: Customer not found
+  /customers:
+    post:
+      operationId: createCustomer
+      tags: [Customers]
+      summary: Create customer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateCustomerDTO"
+      responses:
+        '201':
+          description: Customer created
+
+
+components:
+  schemas:
+    CustomerDTO:
+      type: object
+      x-lombok-builder: true
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        email:
+          type: string
+    CreateCustomerDTO:
+      type: object
+      required: [name, email]
+      properties:
+        name:
+          type: string
+        email:
+          type: string
