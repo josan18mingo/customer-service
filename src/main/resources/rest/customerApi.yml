@@ -10,6 +10,10 @@ servers:
 paths:
   /customer/{id}:
     get:
+      x-cors:
+        allowedOrigins: "*"
+        allowedMethods: "GET, POST, PUT, DELETE"
+        allowedHeaders: "Content-Type, Authorization"
       operationId: getCustomerById
       tags: [ Customers ]
       summary: Get customer by ID

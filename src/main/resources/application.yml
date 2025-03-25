@@ -4,7 +4,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/customerdb
     username: postgres
-    password: josan
+    password: postgres
     driver-class-name: org.postgresql.Driver
   flyway:
     enabled: true
@@ -17,4 +17,6 @@ spring:
   kafka:
     bootstrap-servers: localhost:9092
   springdoc:
-    packages-to-scan: com.ecommerce.api, com.ecommerce.controller
+    swagger-ui:
+      path: /swagger-ui.html
+      enabled: true
